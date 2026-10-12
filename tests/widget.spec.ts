@@ -11,7 +11,7 @@ test.describe('Uchi.ru widget ', () => {
     await page.goto('/');
 
     // close cookies popup
-    await page.click('._UCHI_COOKIE__button');
+    await page.addLocatorHandler(page.locator('._UCHI_COOKIE__button:visible'), (button) => button.click());
   });
 
   test('opens', async ({page}) => {
