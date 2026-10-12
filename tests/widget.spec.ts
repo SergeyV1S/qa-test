@@ -31,4 +31,20 @@ test.describe('Uchi.ru widget ', () => {
 
     expect(await widgetPage.getTitle()).toEqual('Связь с поддержкой');
   });
+
+  test('clears input text', async ({ page }) => {
+    const searchValue = 'как получить сертификат';
+ 
+    await widgetPage.openWidget();
+
+    const cinput = widgetPage.getInput();
+    await cinput.fill(searchValue);
+
+    await expect(cinput).toHaveValue(searchValue);
+
+    const clearInputButton = widgetPage.getInputClear();
+    await clearInputButton.click();
+
+    await expect(cinput).toHaveValue('');
+  });
 });
